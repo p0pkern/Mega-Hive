@@ -5,6 +5,8 @@ function updateStats() {
     `Larva: ${player.larva} harvest: ${player.harvest} Meat: ${player.meat}`
 }
 
+// Clicking Functions
+
 function mineLarva() {
     player.larva += 1;
     updateStats()
