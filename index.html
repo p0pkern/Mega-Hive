@@ -8,10 +8,19 @@
 </head>
 <body>
     <h1>Mega Hive</h1>
+
     <h2 id="main-stats">Larva: 0, harvest: 0, Meat: 0</h2>
-    <button onclick="mineLarva()">Generate Larva</button>
-    <button onclick="mineHarvest()">Harvest</button>
-    <button onclick="mineMeat()">Kill Prey</button>
+
+    <section id="resource-generators">
+        <button onclick="generateResource('larva')">Hatch Larva</button>
+        <button onclick="generateResource('harvest')">Harvest Food</button>
+        <button onclick="generateResource('meat')">Kill Prey</button>
+    </section>
+
+    <section id="data-elements">
+        <button onclick="save()">Save Game</button>
+        <button onclick="deleteSave()">Delete Save?</button>
+    </section>
 
     <script src="js/data.js"></script>
     <script src="js/script.js"></script>
