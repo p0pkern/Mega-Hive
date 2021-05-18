@@ -3,19 +3,28 @@ let player = new StartPlayer();
 
 // Reloads the UI current stats
 function updateStats() {
-    updateResources()
+    updateLarva();
 }
 
-function updateResources() {
-    document.getElementById('main-stats').innerText =
-    `Larva: ${player.larva} harvest: ${player.harvest} Meat: ${player.meat}`
+function updateLarva() {
+    document.getElementById('main-larva').innerText =
+    `Larva: ${player.larva}`;
 }
 
 // Clicking Functions
 function generateResource(resource) {
     player[resource] += player[`${resource}PerClick`];
-    updateStats()
+    updateStats();
 }
+
+// Interval timer for all elements
+setInterval(
+    function () {
+        player.larva += player.larvaPerSecond;
+        updateStats();
+    },
+1000);
+
 
 // Saving and Loading Game
 function save() {
@@ -30,8 +39,10 @@ function load() {
         if (typeof savegame.larva !== "undefined") player.larva = savegame.larva;
         if (typeof savegame.harvest !== "undefined") player.harvest = savegame.harvest;
         if (typeof savegame.meat !== "undefined") player.meat = savegame.meat;
+        if (typeof savegame.laverPerClick !== "undefined") player.larvaPerClick = savegame.laverPerClick;
+        if (typeof savegame.larvaPerSecond !== "undefined") player.larvaPerSecond = savegame.larvaPerSecond;
     }
-    updateStats()
+    updateStats();
 }
 
 function deleteSave() {
@@ -40,4 +51,5 @@ function deleteSave() {
     updateStats();
 }
 
+// Load save upon load of DOM
 document.addEventListener('DOMContentLoaded', load());

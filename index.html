@@ -9,12 +9,63 @@
 <body>
     <h1>Mega Hive</h1>
 
-    <h2 id="main-stats">Larva: 0, harvest: 0, Meat: 0</h2>
+    <section id="resources">
+        <h2 id="main-larva">Larva: 0</h2>
+        <h2 id="main-harvest" hidden>Harvest: 0</h2>
+        <h2 id="main-meat" hidden>Meat: 0</h2>
+    </section>
 
     <section id="resource-generators">
         <button onclick="generateResource('larva')">Hatch Larva</button>
-        <button onclick="generateResource('harvest')">Harvest Food</button>
-        <button onclick="generateResource('meat')">Kill Prey</button>
+        <button onclick="generateResource('harvest')" hidden>Harvest Food</button>
+        <button onclick="generateResource('meat')" hidden>Kill Prey</button>
+    </section>
+
+    <section id="queens">
+        <ul>
+            <li id="q1"><button onclick="addItem('queen')">Queen</button></li>
+            <li id="q2">Queens Chamber</li>
+            <li id="q3">Attentive Daughters</li>
+            <li id="q4">Pheromones</li>
+            <li id="q5">Growth Hormone</li>
+            <li id="q6">Gamergates</li>
+            <li id="q7">Gemini Larvae</li>
+            <li id="q8">Multi-Nests</li>
+            <li id="q9">Experimental Larvae</li>
+            <li id="q10">Enhanced Morphology</li>
+            <li id="q11">One True Queen</li>
+        </ul>
+    </section>
+
+    <section id="harvest">
+        <ul>
+            <li id="h1">Leaves</li>
+            <li id="h2">Grain</li>
+            <li id="h3">Sugar</li>
+            <li id="h4">Crickets</li>
+            <li id="h5">Beetles</li>
+            <li id="h6">Spiders</li>
+            <li id="h7">Scorpions</li>
+            <li id="h8">Small Animals</li>
+            <li id="h9">Large Animals</li>
+            <li id="h10">Flesh Apes</li>
+        </ul>
+    </section>
+
+    <section id="warriors">
+        <ul>
+            <li id="w1">Sugar</li>
+            <li id="w2">Ghost</li>
+            <li id="w3">Carpenter</li>
+            <li id="w4">Leaf Cutter</li>
+            <li id="w5">Yellow Crazy</li>
+            <li id="w6">Argentine</li>
+            <li id="w7">Bulldog</li>
+            <li id="w8">Fire</li>
+            <li id="w9">Bullet</li>
+            <li id="w10">Army</li>
+            <li id="w11">Metallic</li>
+        </ul>
     </section>
 
     <section id="data-elements">
