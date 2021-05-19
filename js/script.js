@@ -1,5 +1,6 @@
 
 let player = new StartPlayer();
+player.addAnts();
 
 // Reloads the UI current stats
 function updateStats() {
@@ -14,6 +15,13 @@ function updateLarva() {
 // Clicking Functions
 function generateResource(resource) {
     player[resource] += player[`${resource}PerClick`];
+    updateStats();
+}
+
+function addItem(ant) {
+    player.ants[0].purchaseAnt()
+    player.adjustLarvaPerClick();
+    console.log(player.ants)
     updateStats();
 }
 
