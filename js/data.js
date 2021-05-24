@@ -37,12 +37,16 @@ class StartPlayer {
         this.harvestPerSecont = 0;
         this.meatPerClick = 0;
         this.meatPerSecond = 0;
-        this.ants = []
+        this.ants;
     }
 
     addAnts() {
-        let queen = new NewAnt('queen', 25, 1)
-        this.ants.push(queen)
+        let allAnts = {
+            queen : new NewAnt('queen', 25, 1),
+            queenChamber : new NewAnt('queen chamber', 100, 0),
+            attentiveDaughters : new NewAnt('attentive daughter', 1100, 0)
+        }
+        this.ants = allAnts
     }
 
     adjustLarvaPerClick () {
