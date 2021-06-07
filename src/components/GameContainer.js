@@ -2,23 +2,16 @@ import React, { useState, useEffect} from "react"
 
 // Components
 import Header from "./Header"
-import Workers from "./Workers"
+import FoodMined from "./FoodMined"
 import Buttons from "./Buttons"
 import WorkersPerSecond from "./WorkersPerSecond"
 
+// Player object
+import { newPlayer } from "./NewPlayer"
+
 const GameContainer = () => {
 
-    let newPlayerObject = {
-        workers: 0,
-        clickMultiplier: 1,
-        buildings : [
-            { name : "queen",
-              cost : 30,
-              multiplier : 1,
-              level : 1,
-            }
-        ],
-    }
+    let newPlayerObject = newPlayer
 
     const [player, setPlayer] = useState(getInitialPlayer())
 
@@ -53,7 +46,7 @@ const GameContainer = () => {
     return (
         <>
             <Header />
-            <Workers workers={player.workers} />
+            <FoodMined workers={player.workers} />
             <WorkersPerSecond />
             <Buttons 
                 text="Add Worker" 
