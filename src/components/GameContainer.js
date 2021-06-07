@@ -3,14 +3,21 @@ import React, { useState, useEffect} from "react"
 // Components
 import Header from "./Header"
 import Workers from "./Workers"
-import AddWorker from "./AddWorker"
-import DeleteSave from "./DeleteSave"
+import Buttons from "./Buttons"
+import WorkersPerSecond from "./WorkersPerSecond"
 
 const GameContainer = () => {
 
     let newPlayerObject = {
         workers: 0,
         clickMultiplier: 1,
+        buildings : [
+            { name : "queen",
+              cost : 30,
+              multiplier : 1,
+              level : 1,
+            }
+        ],
     }
 
     const [player, setPlayer] = useState(getInitialPlayer())
@@ -26,7 +33,6 @@ const GameContainer = () => {
     const handleDelete = () => {
         localStorage.removeItem("player")
         resetPlayer()
-        console.log(localStorage)
     }
 
     function resetPlayer() {
@@ -48,11 +54,15 @@ const GameContainer = () => {
         <>
             <Header />
             <Workers workers={player.workers} />
-            <AddWorker 
+            <WorkersPerSecond />
+            <Buttons 
                 text="Add Worker" 
                 handleClickEvent={handleClick} 
             />
-            <DeleteSave handleDeleteEvent={handleDelete}/>
+            <Buttons
+                text="Delete Save" 
+                handleClickEvent={handleDelete}
+            />
         </>
     )
 
