@@ -1,8 +1,8 @@
 import React from "react"
 
-const AddWorker = ({ text, addWorker }) => {
+const AddWorker = ({ text, handleClickEvent }) => {
     return (
-        <button onClick={addWorker}>{text}</button>
+        <button onClick={handleClickEvent}>{text}</button>
     )
 }
 

@@ -9,21 +9,25 @@ const GameContainer = () => {
 
     const [player, setPlayer] = useState({
         workers: 0,
+        clickMultiplier: 1,
     })
 
     const handleClick = () => {
-        console.log("click")
-        // setPlayer({
-        //     ...player,
-        //     workers : player.workers + 1
-        // })
+        // Increments
+        setPlayer({
+            ...player,
+            workers : player.workers + player.clickMultiplier
+        })
     }
 
     return (
         <>
             <Header />
             <Workers workers={player.workers} />
-            <AddWorker text="Add Worker" onClick={handleClick()}/>
+            <AddWorker 
+                text="Add Worker" 
+                handleClickEvent={handleClick} 
+            />
         </>
     )
 
