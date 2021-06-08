@@ -2,9 +2,10 @@ import React, { useState, useEffect} from "react"
 
 // Components
 import Header from "./Header"
-import FoodMined from "./FoodMined"
+import MealMined from "./MealMined"
 import Buttons from "./Buttons"
-import WorkersPerSecond from "./WorkersPerSecond"
+import MealPerSecond from "./MealPerSecond"
+import WorkerItem from "./WorkerItem.js"
 
 // Player object
 import { newPlayer } from "./NewPlayer"
@@ -19,13 +20,17 @@ const GameContainer = () => {
         // Increments total workers by clicking.
         setPlayer({
             ...player,
-            workers : player.workers + player.clickMultiplier
+            meal : player.meal + player.clickMultiplier
         })
     }
 
     const handleDelete = () => {
-        localStorage.removeItem("player")
-        resetPlayer()
+        const answer = window.confirm("Reset all save data?")
+        if (answer) {
+            localStorage.removeItem("player")
+            resetPlayer()
+        }
+        
     }
 
     function resetPlayer() {
@@ -41,21 +46,33 @@ const GameContainer = () => {
     useEffect(() => {
         const temp = JSON.stringify(player)
         localStorage.setItem("player", temp)
-    })
+    }, [player])
 
     return (
         <>
-            <Header />
-            <FoodMined workers={player.workers} />
-            <WorkersPerSecond />
-            <Buttons 
-                text="Add Worker" 
-                handleClickEvent={handleClick} 
-            />
-            <Buttons
-                text="Delete Save" 
-                handleClickEvent={handleDelete}
-            />
+            <div className="game-container">
+                <Header />
+                <Buttons
+                    text="New Game" 
+                    handleClickEvent={handleDelete}
+                />
+            </div>
+                <div className="gameplay-section">
+                    <div className="harvest-section">
+                        <MealMined meal={player.meal} />
+                        <MealPerSecond />
+                        <Buttons 
+                            text="Harvest Meal" 
+                            handleClickEvent={handleClick} 
+                        />
+                    </div>
+
+                    <ul className="worker-list">
+                        {player.workers.map(worker => {
+                            return <WorkerItem workerStats={worker}/>
+                        })}
+                    </ul>
+                </div>
         </>
     )
 
