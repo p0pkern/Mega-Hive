@@ -1,7 +1,7 @@
 import React from "react"
 
 const MealMined = ({ meal }) => {
-    return <h3>{`Food mined: ${meal}`}</h3>
+    return <h3 className="meal-mined">{`Food mined: ${meal}`}</h3>
 }
 
 export default MealMined
