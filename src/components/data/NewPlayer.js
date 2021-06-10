@@ -38,7 +38,7 @@ const newPlayer = {
         },
         {   
             id : "w4",
-            name : "Attentive Daughters",
+            name : "Moldy Chambers",
             cost : 3000,
             HPS : 12,
             level : 1,
@@ -60,7 +60,7 @@ const newPlayer = {
         },
         {   
             id : "w6",
-            name : "Advanced Harvesting Techniques",
+            name : "Local Insects",
             cost : 40000,
             HPS : 100,
             level : 1,
@@ -71,7 +71,7 @@ const newPlayer = {
         },
         {   
             id : "w7",
-            name : "Advanced Harvesting Techniques",
+            name : "Stray Garbage",
             cost : 200000,
             HPS : 400,
             level : 1,

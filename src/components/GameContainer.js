@@ -18,13 +18,13 @@ const GameContainer = () => {
 
     const [player, setPlayer] = useState(getInitialPlayer())
 
-    // GAME PLAY SECTION
+    ///////////////////////
+    // GAME PLAY SECTION//
+    /////////////////////
 
     // Initial Unlock of units
-
     const handleInitialPurchase = id => {
         // Handles the initial purchase of a worker from hidden to revealed.
-
         for (let i=0; i < player.workers.length; i++) {
             if (player.workers[i].id === id) {
                 const selectedWorker = player.workers[i]
@@ -63,7 +63,6 @@ const GameContainer = () => {
     }
 
     // Upgrading units
-    
     const handleUpgrade = id => {
         for (let i=0; i < player.workers.length; i++) {
             if (player.workers[i].id === id) {
@@ -100,18 +99,20 @@ const GameContainer = () => {
     }
 
     // Handles clicking events on screen for resources
-
     const handleClick = () => {
-        // Increments total workers by clicking.
         setPlayer({
             ...player,
             meal : player.meal + player.clickMultiplier
         })
     }
+    ////////////////////////////
+    // END OF GAMEPLAY SECTION//
+    ///////////////////////////
 
-    // END OF GAMEPLAY SECTION
 
-    // PLAY TIMER
+    //////////////////////
+    // INCREMENTAL TIMER//
+    /////////////////////
     useEffect(() => {
         const interval = setInterval(() => {
             setPlayer(prevPlayer => ({
@@ -120,12 +121,14 @@ const GameContainer = () => {
         }, 1000);
         return () => clearInterval(interval);
     }, []);
-    
-    // END PLAY TIMER
+    //////////////////////////
+    // END INCREMENTAL TIMER//
+    /////////////////////////
 
 
-    // SAVING AND DELETING DATA TO LOCAL STORAGE SECTION
-
+    //////////////////////////////////////////////////////
+    // SAVING AND DELETING DATA TO LOCAL STORAGE SECTION//
+    /////////////////////////////////////////////////////
     const handleDelete = () => {
         // Deletes the game save from local storage.
         const answer = window.confirm("Reset all save data?")
@@ -152,9 +155,11 @@ const GameContainer = () => {
         const temp = JSON.stringify(player)
         localStorage.setItem("player", temp)
     }, [player])
+    ////////////////////////////////
+    // END OF SAVE DELETE SECTION//
+    //////////////////////////////
 
-    // END OF SAVE DELETE SECTION
-
+    
     return (
         <>
             <div className="game-container">
