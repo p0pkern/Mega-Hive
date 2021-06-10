@@ -1,8 +1,8 @@
 import React from "react"
 
-const MealPerSecond = ({ props, text }) => {
+const MealPerSecond = ({ mps }) => {
 
-    return <p className="meal-per-second">Hello from Meal per second</p>
+    return <p className="meal-per-second">{mps}</p>
 }
 
 export default MealPerSecond
