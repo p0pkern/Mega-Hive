@@ -39,9 +39,7 @@ const GameContainer = () => {
         setPlayer({
             ...player,
             mealPerSecond: player.workers.reduce((total, worker) => {
-                console.log(worker.unlocked)
                 if (worker.unlocked) {
-                    console.log(total + worker.HPS, "me")
                     return total + worker.HPS
                 } else {
                     return total
@@ -99,7 +97,6 @@ const GameContainer = () => {
                 }
             }, 0), 
         })
-        console.log(player)
     }
 
     // Handles clicking events on screen for resources
@@ -114,13 +111,24 @@ const GameContainer = () => {
 
     // END OF GAMEPLAY SECTION
 
+    // PLAY TIMER
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setPlayer(prevPlayer => ({
+                ...prevPlayer, meal : prevPlayer.meal + prevPlayer.mealPerSecond
+            }))
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
+    
+    // END PLAY TIMER
+
 
     // SAVING AND DELETING DATA TO LOCAL STORAGE SECTION
 
     const handleDelete = () => {
         // Deletes the game save from local storage.
         const answer = window.confirm("Reset all save data?")
-        console.log(answer)
         if (answer) {
             localStorage.removeItem("player")
             resetPlayer()
