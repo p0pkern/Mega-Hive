@@ -167,6 +167,7 @@ const GameContainer = () => {
                 <Buttons
                     text="New Game" 
                     handleClickEvent={handleDelete}
+                    classNameAssigned="new-game-btn"
                 />
             </div>
                 <div className="gameplay-section">
@@ -175,7 +176,8 @@ const GameContainer = () => {
                         <MealPerSecond mps={player.mealPerSecond}/>
                         <Buttons 
                             text="Harvest Meal" 
-                            handleClickEvent={handleClick} 
+                            handleClickEvent={handleClick}
+                            classNameAssigned="harvest-meal-btn" 
                         />
                     </div>
                     <div className="workers-section">
