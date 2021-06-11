@@ -4,6 +4,7 @@ import React, { useState, useEffect} from "react"
 import Buttons from "./misc/Buttons"
 import Header from "./misc/Header"
 import Message from "./misc/Message"
+import Footer from "./misc/Footer"
 
 // Worker Components
 import MealMined from "./workers/MealMined"
@@ -168,7 +169,7 @@ const GameContainer = () => {
     ///////////////////////
     // MESSAGE SECTION ///
     //////////////////////
-    const [message, setMessage] = useState("")
+    const [message, setMessage] = useState("Click on Harvest Meal to begin.")
 
     const handleMessage = ( message ) => {
         setMessage(message)
@@ -178,7 +179,7 @@ const GameContainer = () => {
     ///////////////////////////
     
     return (
-        <>
+        <div className="game-area">
             <div className="header-container">
                 <Header />
                 <Buttons
@@ -209,9 +210,13 @@ const GameContainer = () => {
                                         />
                             })}
                         </ul>
-                    </div>
+                    </div> 
                 </div>
-        </>
+                <footer>
+                    <Footer /> 
+                </footer>
+                
+        </div>
     )
 
 }
