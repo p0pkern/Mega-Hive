@@ -1,5 +1,5 @@
 const newPlayer = {
-    meal: 100000000000000,
+    meal: 0,
     clickMultiplier: 1,
     mealPerSecond: 0, 
     workers : [

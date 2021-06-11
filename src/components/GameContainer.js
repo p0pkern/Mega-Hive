@@ -3,6 +3,7 @@ import React, { useState, useEffect} from "react"
 // Components
 import Buttons from "./misc/Buttons"
 import Header from "./misc/Header"
+import Message from "./misc/Message"
 
 // Worker Components
 import MealMined from "./workers/MealMined"
@@ -14,13 +15,15 @@ import { newPlayer } from "./data/NewPlayer"
 
 const GameContainer = () => {
 
-    let newPlayerObject = newPlayer
-
-    const [player, setPlayer] = useState(getInitialPlayer())
-
     ///////////////////////
     // GAME PLAY SECTION//
-    /////////////////////
+    //////////////////////
+
+    // Blank player object
+    let newPlayerObject = newPlayer
+
+    // Gameplay hook
+    const [player, setPlayer] = useState(getInitialPlayer())
 
     // Initial Unlock of units
     const handleInitialPurchase = id => {
@@ -30,22 +33,23 @@ const GameContainer = () => {
                 const selectedWorker = player.workers[i]
                 if (player.meal >= selectedWorker.cost) {
                     unlockUnit(selectedWorker)
+                    handleMessage("")
                 } else {
-                    console.log("Insufficient funds for unlock.")
+                    handleMessage("Insufficient harvest for unlock.")
                 }
             }
         }
         
-        setPlayer({
-            ...player,
-            mealPerSecond: player.workers.reduce((total, worker) => {
+        setPlayer(prevPlayer => ({
+            ...prevPlayer,
+            mealPerSecond: prevPlayer.workers.reduce((total, worker) => {
                 if (worker.unlocked) {
                     return total + worker.HPS
                 } else {
                     return total
                 }
             }, 0), 
-        })
+        }))
     }
 
     function unlockUnit(selectedUnit) {
@@ -69,8 +73,9 @@ const GameContainer = () => {
                 const selectedWorker = player.workers[i]
                 if (player.meal >= selectedWorker.cost) {
                     upgradeUnit(selectedWorker)
+                    handleMessage("")
                 } else {
-                    console.log("insufficient funds for upgrade")
+                    handleMessage("Insufficient harvest for upgrade.")
                 }
             }  
         }
@@ -105,6 +110,7 @@ const GameContainer = () => {
             meal : player.meal + player.clickMultiplier
         })
     }
+
     ////////////////////////////
     // END OF GAMEPLAY SECTION//
     ///////////////////////////
@@ -157,18 +163,30 @@ const GameContainer = () => {
     }, [player])
     ////////////////////////////////
     // END OF SAVE DELETE SECTION//
-    //////////////////////////////
+    ///////////////////////////////
 
+    ///////////////////////
+    // MESSAGE SECTION ///
+    //////////////////////
+    const [message, setMessage] = useState("")
+
+    const handleMessage = ( message ) => {
+        setMessage(message)
+    }
+    ////////////////////////////
+    // END OF MESSAGE SECTION //
+    ///////////////////////////
     
     return (
         <>
-            <div className="game-container">
+            <div className="header-container">
                 <Header />
                 <Buttons
                     text="New Game" 
                     handleClickEvent={handleDelete}
                     classNameAssigned="new-game-btn"
                 />
+                <Message sendMessage={message}/>
             </div>
                 <div className="gameplay-section">
                     <div className="harvest-section">

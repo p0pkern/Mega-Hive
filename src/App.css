@@ -1,23 +1,49 @@
 body {
     background-color: rgb(36, 37, 37);
-    color:rgb(158, 54, 13); 
+    color:rgb(158, 54, 13);
+    margin: 0;
+    padding: 0;
 }
 
 /* Game area formatting */
-.game-container {
+.header-container {
     display: flex;
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .header-logo {
     font-size: 4rem;
-    margin-bottom: 0;
+    margin-top: -10px;
 }
 
 .new-game-btn {
-    margin-left: 180px;
+    margin: 30px;  
+    margin-top: -10px;
+    padding: 20px;
+    border-radius: 10px;
 }
+
+.message-box {
+    background-color:rgb(158, 54, 13);
+    color:rgb(255, 255, 255);
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 1.4em;
+    padding: 20px;
+    padding-top: 5px;
+    margin-top: 0;
+    overflow: scroll;
+}
+
+.message-box > p {
+    margin: 30px;
+}
+
+
 
 /* Gameplay Area*/
 
