@@ -1,14 +1,21 @@
 body {
     background-color: rgb(36, 37, 37);
-    color:rgb(158, 54, 13);
+    color:rgb(190, 164, 77);
     margin: 0;
-    padding: 0;
+    padding: 10px;
     width: 100%;
     height: auto;
     overflow-x: scroll;
     overflow-y: scroll;
     white-space: nowrap;
 }
+
+a:visited {
+    color:rgb(190, 164, 77);
+}
+
+
+/* gameplay area */
 
 .game-area {
     display: flex;
@@ -43,8 +50,8 @@ body {
 }
 
 .message-box {
-    background-color:rgb(158, 54, 13);
-    color:rgb(255, 255, 255);
+    background-color:rgb(190, 164, 77);
+    color:rgb(36, 37, 37);
     width: 400px;
     height: 50px;
     border-radius: 10px;
@@ -104,7 +111,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 220px;
+    width: 270px;
     height: auto;
     overflow: scroll;
 }
@@ -119,7 +126,7 @@ body {
 
 .worker-list {
     list-style-type: none;
-    width: 210px;
+    width: 260px;
     margin-left: 0;
     margin-bottom: 0;
     padding: 0;
@@ -128,13 +135,76 @@ body {
 }
 
 .worker-item {
-    height: 60px;
-    width: 200px;
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+    width: 250px;
+    border-radius: 15px;
+    margin: 1px;
 }
 
 .worker-item p {
     padding: 0;
     margin: 0;
+}
+
+/* Worker is locked */
+
+.worker-item .locked-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.worker-item-unlocked {
+    background-color:rgb(190, 164, 77);
+    color:rgb(36, 37, 37);
+}
+
+.locked-icon svg{
+    width: 60px;
+    height: 60px;
+}
+.worker-item .locked-cost {
+    margin-top: 25px;
+    margin-left: 10px;
+    font-size: 1.2em;
+}
+
+/* Worker is unlocked */
+.worker-unlocked {
+    display: flex;
+    flex-direction: row;
+}
+
+.worker-unlocked p {
+    padding: 0;
+    margin: 0;
+}
+
+.worker-icon-unlocked svg{
+    width: 45px;
+    height: 45px;
+}
+
+.worker-icon-level-container {
+    padding: 0;
+    margin: 0;
+}
+
+.worker-basic-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.worker-info-container {
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.worker-info-container .worker-name {
+    font-weight: bold;
 }
 
 /* Footer section */
@@ -148,5 +218,17 @@ body {
     padding: 30px;
     padding-bottom: -100px;
     background-color: rgb(36, 37, 37);
-    color:rgb(158, 54, 13);
+    color:rgb(190, 164, 77);
+}
+
+.github svg, .linkedin svg{
+    width: 60px;
+    height: 60px;
+    padding: 30px;
+    padding-top: 0;
+}
+
+.footer-icon {
+    display: flex;
+    flex-direction: row;
 }
