@@ -59,6 +59,7 @@ a:visited {
     padding: 20px;
     padding-top: 5px;
     margin-top: 0;
+    margin-left: 20px;
     overflow: scroll;
 }
 
@@ -77,17 +78,22 @@ a:visited {
     white-space: nowrap;
 }
 
+.gameplay-row {
+    display: flex;
+    flex-direction: row;
+}
+
 /* Area with clicker and stats for harvest. */
 .harvest-section {
     padding: 0;
 }
 
-.harvest-section p {
+.harvest-section p{
     padding: 0;
     margin: 0;
 }
 
-.harvest-section .meal-mined {
+.harvest-section .meal-mined{
     font-size: 1.5em;
     margin-bottom: 0;
 }
@@ -107,6 +113,7 @@ a:visited {
 }
 
 /* Worker list section */
+
 .workers-section {
     display: flex;
     flex-direction: column;
@@ -231,4 +238,58 @@ a:visited {
 .footer-icon {
     display: flex;
     flex-direction: row;
+}
+
+/* Warrior and Battle Section */
+.enemy-data {
+    margin: 50px;
+    margin-top: 20px;
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+}
+
+.enemy-image {
+    width: 80px;
+    height: 80px;
+}
+
+.enemy-image h3 {
+    font-size: 1.4em;
+}
+
+.meat-harvest {
+    margin-left: 50px;
+}
+
+.meat-harvest p {
+    padding: 0;
+    margin: 0;
+}
+
+.meat-harvest h3{
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+
+.enemy-data  p, .enemy-data h3{
+    margin: 0;
+    padding: 0;
+}
+
+.enemy-data h3 {
+    font-size: 1.5em;
+    margin-top: -20px;
+}
+
+.enemy-data p {
+    font-size: 1.2em;
+    padding-bottom: 3px;
+}
+
+.enemy-data .enemy-data-bottom {
+    padding: 0;
+    margin: 0;
+    margin-bottom: -20px;
+    color: red;
 }

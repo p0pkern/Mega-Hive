@@ -9,7 +9,11 @@ import Footer from "./misc/Footer"
 // Worker Components
 import MealMined from "./workers/MealMined"
 import MealPerSecond from "./workers/MealPerSecond"
-import WorkerItem from "./workers/WorkerItem.js"
+import WorkerItem from "./workers/WorkerItem"
+
+// Warrior Components
+import Meat from "./warriors/Meat"
+import Enemy from "./warriors/Enemy"
 
 // Player object
 import { newPlayer } from "./data/NewPlayer"
@@ -112,6 +116,30 @@ const GameContainer = () => {
         })
     }
 
+    const handleAttack = () => {
+        if (player.enemy.health - player.attackPower <= 0) {
+            setPlayer(prevPlayer => ({
+                ...prevPlayer,
+                enemy : {
+                    ...prevPlayer.enemy,
+                    level : prevPlayer.enemy.level + 1,
+                    health: Math.round((prevPlayer.enemy.baseHealth * (1.2**prevPlayer.enemy.level))),
+                    kills : prevPlayer.enemy.kills + 1,
+                },
+                meat : prevPlayer.meat + (Math.round(.01 * prevPlayer.enemy.health) > 1 ? Math.round(.001 * prevPlayer.enemy.health) : 1)
+            }))
+        } else {
+            setPlayer(prevPlayer => ({
+                ...prevPlayer,
+                enemy : {
+                    ...prevPlayer.enemy,
+                    health: prevPlayer.enemy.health - prevPlayer.attackPower
+                }
+            }))
+        }
+    }
+
+
     ////////////////////////////
     // END OF GAMEPLAY SECTION//
     ///////////////////////////
@@ -182,13 +210,14 @@ const GameContainer = () => {
         <div className="game-area">
             <div className="header-container">
                 <Header />
+                <Message sendMessage={message}/>
                 <Buttons
                     text="New Game" 
                     handleClickEvent={handleDelete}
                     classNameAssigned="new-game-btn"
                 />
-                <Message sendMessage={message}/>
             </div>
+                <div className="gameplay-row">
                 <div className="gameplay-section">
                     <div className="harvest-section">
                         <MealMined meal={player.meal} />
@@ -212,13 +241,25 @@ const GameContainer = () => {
                         </ul>
                     </div> 
                 </div>
+                    <div className="warrior-section">
+                        <Meat 
+                            meat={player.meat}
+                        />
+                        <Enemy
+                            handleAttackClick={handleAttack} 
+                            name={player.enemy.name}
+                            health={player.enemy.health}
+                            level={player.enemy.level}
+                            kills={player.enemy.kills}
+                        />
+                    </div>
+                </div>
+
                 <footer>
                     <Footer /> 
-                </footer>
-                
+                </footer>         
         </div>
     )
-
 }
 
 export default GameContainer

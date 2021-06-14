@@ -114,6 +114,15 @@ const newPlayer = {
             baseHPS : 100000, 
         },
     ],
+    attackPower: 250000,
+    meat : 0,
+    enemy : {
+        name : "Bill the Placeholder Bug",
+        level : 1,
+        health : 10000000,
+        kills : 0,
+        baseHealth : 1000000,
+    }
 }
 
 export { newPlayer }
