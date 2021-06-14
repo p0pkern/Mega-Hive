@@ -262,9 +262,13 @@ a:visited {
     margin-left: 50px;
 }
 
-.meat-harvest p {
+.meat-harvest p, .attack-per-second p{
     padding: 0;
     margin: 0;
+}
+
+.attack-per-second p{
+    margin-left: 50px;
 }
 
 .meat-harvest h3{

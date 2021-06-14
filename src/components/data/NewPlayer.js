@@ -114,15 +114,65 @@ const newPlayer = {
             baseHPS : 100000, 
         },
     ],
-    attackPower: 250000,
+    attackPower: 1,
+    attackPerSecond: 25000,
     meat : 0,
     enemy : {
         name : "Bill the Placeholder Bug",
         level : 1,
-        health : 10000000,
+        health : 100000,
         kills : 0,
         baseHealth : 1000000,
-    }
+    },
+    warriors : [
+        {
+            name: "Arissa",
+            attack : 10,
+            meatCost : 1,
+            harvestCost : 1200,
+            baseAttack : 10,
+            baseHarvestCost : 1200,
+            baseMeatCost : 1,
+        },
+        {
+            name: "Donatello",
+            attack : 25,
+            meatCost : 100,
+            harvestCost : 12000,
+            baseAttack : 25,
+            baseHarvestCost : 12000,
+            baseMeatCost : 100,
+        },
+        {
+            name: "Elizabeth",
+            attack : 100,
+            meatCost : 1000,
+            harvestCost : 52000,
+            baseAttack : 100,
+            baseHarvestCost : 52000,
+            baseMeatCost : 1000,
+        },
+        {
+            name: "Marcus",
+            attack : 250,
+            meatCost : 25000,
+            harvestCost : 100000,
+            baseAttack : 250,
+            baseHarvestCost : 100000,
+            baseMeatCost : 25000,
+        },
+        {
+            name: "Sangrinous",
+            attack : 3000,
+            meatCost : 250000,
+            harvestCost : 100000000,
+            baseAttack : 3000,
+            baseHarvestCost : 100000000,
+            baseMeatCost : 100000000,
+        },
+
+    ]
 }
+
 
 export { newPlayer }

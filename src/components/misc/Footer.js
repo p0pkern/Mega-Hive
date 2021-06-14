@@ -7,8 +7,8 @@ const Footer = () => {
         <div className="footer">
             <p>Created by Chris Peterman</p>
             <div className="footer-icon">
-                <a target="_blank" href="https://github.com/p0pkern" className="github"><FaGithub /></a>
-                <a target="_blank" href="https://www.linkedin.com/in/chris-peterman-464005ba/" className="linkedin"><ImLinkedin /></a>
+                <a target="_blank" href="https://github.com/p0pkern" className="github" rel="noreferrer"><FaGithub /></a>
+                <a target="_blank" href="https://www.linkedin.com/in/chris-peterman-464005ba/" className="linkedin" rel="noreferrer"><ImLinkedin /></a>
             </div>
         </div>
     )

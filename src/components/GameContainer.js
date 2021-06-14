@@ -13,6 +13,7 @@ import WorkerItem from "./workers/WorkerItem"
 
 // Warrior Components
 import Meat from "./warriors/Meat"
+import AttackPower from "./warriors/AttackPower"
 import Enemy from "./warriors/Enemy"
 
 // Player object
@@ -138,8 +139,6 @@ const GameContainer = () => {
             }))
         }
     }
-
-
     ////////////////////////////
     // END OF GAMEPLAY SECTION//
     ///////////////////////////
@@ -151,11 +150,13 @@ const GameContainer = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setPlayer(prevPlayer => ({
-                ...prevPlayer, meal : prevPlayer.meal + prevPlayer.mealPerSecond
+                ...prevPlayer, 
+                meal : prevPlayer.meal + prevPlayer.mealPerSecond,
             }))
         }, 1000);
         return () => clearInterval(interval);
     }, []);
+
     //////////////////////////
     // END INCREMENTAL TIMER//
     /////////////////////////
@@ -245,6 +246,7 @@ const GameContainer = () => {
                         <Meat 
                             meat={player.meat}
                         />
+                        <AttackPower attack={player.attackPerSecond}/>
                         <Enemy
                             handleAttackClick={handleAttack} 
                             name={player.enemy.name}
