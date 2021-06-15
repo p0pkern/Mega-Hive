@@ -123,7 +123,7 @@ a:visited {
     overflow: scroll;
 }
 
-.workers-section > h3{
+.workers-section > h3, .warriors-section > h3{
     padding: 0;
     padding-top: 10px;
     margin: 0;
@@ -214,36 +214,11 @@ a:visited {
     font-weight: bold;
 }
 
-/* Footer section */
-
-.footer {
-    font-size: 1.4em;
-    width: 100%;
-    height: 50px;
-    margin: 0;
-    margin-bottom: -100px;
-    padding: 30px;
-    padding-bottom: -100px;
-    background-color: rgb(36, 37, 37);
-    color:rgb(190, 164, 77);
-}
-
-.github svg, .linkedin svg{
-    width: 60px;
-    height: 60px;
-    padding: 30px;
-    padding-top: 0;
-}
-
-.footer-icon {
-    display: flex;
-    flex-direction: row;
-}
-
 /* Warrior and Battle Section */
 .enemy-data {
     margin: 50px;
     margin-top: 20px;
+    margin-bottom: 20px;
     width: 250px;
     height: 250px;
     border-radius: 15px;
@@ -297,3 +272,111 @@ a:visited {
     margin-bottom: -20px;
     color: red;
 }
+
+/* Warriors */
+.warrior-list {
+    list-style-type: none;
+    margin-left: 10px;
+}
+
+.warrior-locked, .warrior-unlocked {
+    width: 250px;
+    height: 100px;
+    border-radius: 15px;
+}
+
+.warriors-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.warriors-section > h3 {
+    margin-top: 0;
+    margin-left: 120px;
+}
+
+.warrior-locked-icon svg {
+    width: 70px;
+    height: 70px;
+}
+
+.warrior-locked {
+    display: flex;
+    flex-direction: row;
+}
+
+.warrior-locked-data {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.warrior-locked-data p{
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+/* warrior unlocked */
+.warrior-unlocked {
+    background-color:rgb(173, 44, 11);
+    color:rgb(204, 216, 216);
+}
+
+.warrior-unlocked-data {
+    display: flex;
+    flex-direction: row;
+}
+
+.warrior-unlocked-name-level p, .warrior-unlocked-data p{
+    margin: 0;
+    padding: 0;
+}
+
+.warrior-unlocked-name-level {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.warrior-unlocked-data-items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.warrior-unlocked-icon svg {
+    width: 50px;
+    height: 50px;
+}
+
+/* Footer section */
+
+.footer {
+    font-size: 1.4em;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    margin-bottom: -100px;
+    padding: 30px;
+    padding-bottom: -100px;
+    background-color: rgb(36, 37, 37);
+    color:rgb(190, 164, 77);
+}
+
+.github svg, .linkedin svg{
+    width: 60px;
+    height: 60px;
+    padding: 30px;
+    padding-top: 0;
+}
+
+.footer-icon {
+    display: flex;
+    flex-direction: row;
+}
+

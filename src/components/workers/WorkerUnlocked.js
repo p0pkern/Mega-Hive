@@ -5,7 +5,6 @@ const WorkerUnlocked = ({worker, handleUpgrade}) => {
     return (
         <li key={worker.id}>
             <button
-                key={`${worker.id}btn`} 
                 onClick={() => handleUpgrade(worker.id)}
                 style={{cursor: 'pointer'}}
                 className="worker-item worker-item-unlocked">

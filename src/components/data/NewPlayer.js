@@ -93,7 +93,7 @@ const newPlayer = {
         },
         {   
             id : "w9",
-            name : "Primitive Harvesting Techniques",
+            name : "Primitive Farming",
             cost : 120000000,
             HPS : 99000,
             level : 1,
@@ -104,7 +104,7 @@ const newPlayer = {
         },
         {   
             id : "w10",
-            name : "Human Farming Supplies",
+            name : "Human Farming Tech",
             cost : 4000000000,
             HPS : 100000,
             level : 1,
@@ -125,7 +125,9 @@ const newPlayer = {
         baseHealth : 25,
     },
     warriors : [
-        {
+        {   
+            id: "wa1",
+            level : 1,
             name: "Arissa",
             attack : 10,
             meatCost : 1,
@@ -133,8 +135,12 @@ const newPlayer = {
             baseAttack : 10,
             baseHarvestCost : 1200,
             baseMeatCost : 1,
+            unlocked : false,
+            multiplier : 1,
         },
-        {
+        {   
+            id: "wa2",
+            level : 1,
             name: "Donatello",
             attack : 25,
             meatCost : 100,
@@ -142,8 +148,13 @@ const newPlayer = {
             baseAttack : 25,
             baseHarvestCost : 12000,
             baseMeatCost : 100,
+            unlocked : false,
+            multiplier : 1,
+
         },
-        {
+        {   
+            id: "wa3",
+            level : 1,
             name: "Elizabeth",
             attack : 100,
             meatCost : 1000,
@@ -151,8 +162,13 @@ const newPlayer = {
             baseAttack : 100,
             baseHarvestCost : 52000,
             baseMeatCost : 1000,
+            unlocked : false,
+            multiplier : 1,
+
         },
-        {
+        {   
+            id: "wa4",
+            level : 1,
             name: "Marcus",
             attack : 250,
             meatCost : 25000,
@@ -160,8 +176,12 @@ const newPlayer = {
             baseAttack : 250,
             baseHarvestCost : 100000,
             baseMeatCost : 25000,
+            unlocked : false,
+            multiplier : 1,
         },
-        {
+        {   
+            id: "wa5",
+            level : 1,
             name: "Sangrinous",
             attack : 3000,
             meatCost : 250000,
@@ -169,6 +189,8 @@ const newPlayer = {
             baseAttack : 3000,
             baseHarvestCost : 100000000,
             baseMeatCost : 100000000,
+            unlocked : false,
+            multiplier : 1,
         },
 
     ]

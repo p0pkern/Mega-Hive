@@ -15,6 +15,7 @@ import WorkerItem from "./workers/WorkerItem"
 import Meat from "./warriors/Meat"
 import AttackPower from "./warriors/AttackPower"
 import Enemy from "./warriors/Enemy"
+import Warriors from "./warriors/Warriors"
 
 // Player object
 import { newPlayer } from "./data/NewPlayer"
@@ -31,20 +32,21 @@ const GameContainer = () => {
     // Gameplay hook
     const [player, setPlayer] = useState(getInitialPlayer())
 
-    // Initial Unlock of units
-    const handleInitialPurchase = id => {
+    // Initial Unlock of Worker
+    const handleInitialPurchaseWorker = id => {
         // Handles the initial purchase of a worker from hidden to revealed.
         for (let i=0; i < player.workers.length; i++) {
             if (player.workers[i].id === id) {
                 const selectedWorker = player.workers[i]
                 if (player.meal >= selectedWorker.cost) {
-                    unlockUnit(selectedWorker)
+                    unlockWorker(selectedWorker)
                     handleMessage("")
                 } else {
                     handleMessage("Insufficient harvest for unlock.")
                 }
             }
         }
+
         
         setPlayer(prevPlayer => ({
             ...prevPlayer,
@@ -58,27 +60,27 @@ const GameContainer = () => {
         }))
     }
 
-    function unlockUnit(selectedUnit) {
+    function unlockWorker(selectedUnit) {
         setPlayer({
             ...player,
             meal : player.meal - selectedUnit.cost, 
             workers : player.workers.map(prevWorker => {
                 if (prevWorker.id === selectedUnit.id) {
                     prevWorker.unlocked = true
-                    prevWorker.cost = Math.round(((prevWorker.cost * prevWorker.multiplier) * (1.07**prevWorker.level)))
+                    prevWorker.cost = Math.round(((prevWorker.cost) * (1.07**prevWorker.level)))
                 }
                 return prevWorker
             }),
         })
     }
 
-    // Upgrading units
-    const handleUpgrade = id => {
+    // Upgrading Worker
+    const handleUpgradeWorker = id => {
         for (let i=0; i < player.workers.length; i++) {
             if (player.workers[i].id === id) {
                 const selectedWorker = player.workers[i]
                 if (player.meal >= selectedWorker.cost) {
-                    upgradeUnit(selectedWorker)
+                    upgradeWorkerStats(selectedWorker)
                     handleMessage("")
                 } else {
                     handleMessage("Insufficient harvest for upgrade.")
@@ -87,7 +89,7 @@ const GameContainer = () => {
         }
     }
 
-    function upgradeUnit(selectedUnit) {
+    function upgradeWorkerStats(selectedUnit) {
         setPlayer({
             ...player,
             meal : player.meal - selectedUnit.cost,
@@ -109,6 +111,95 @@ const GameContainer = () => {
         })
     }
 
+    // Unlocking Warrior
+    const handleInitialPurchaseWarrior = id => {
+        for(let i=0; i < player.warriors.length; i++) {
+            if (player.warriors[i].id === id) {
+                const selectedWarrior = player.warriors[i]
+                if (player.meat >= selectedWarrior.meatCost && player.meal >= selectedWarrior.harvestCost) {
+                    unlockWarriorStats(selectedWarrior)
+                    handleMessage("")
+                } else if (player.meat < selectedWarrior.meatCost && player.meal < selectedWarrior.harvestCost) {
+                    handleMessage("Insufficient harvest and meat for purchase")
+                } else if (player.meat < selectedWarrior.meatCost) {
+                    handleMessage("Insufficient meat for purchase.")
+                } else {
+                    handleMessage("Insufficient harvest for purchase.")
+                }
+            } 
+        }
+    }
+
+    function unlockWarriorStats(selectedWarrior) {
+        const meatLeft = player.meat - selectedWarrior.meatCost
+        const mealLeft = player.meal - selectedWarrior.harvestCost
+        const newAttack = player.warriors.reduce((total, warrior) => {
+            if (warrior.unlocked) {
+                return total + warrior.attack
+            } else if (warrior.id === selectedWarrior.id){
+                return total + warrior.attack
+            } else {
+                return total
+            }
+        }, 0)
+        setPlayer(prevPlayer => ({
+            ...prevPlayer,
+            meal : mealLeft,
+            meat : meatLeft,
+            warriors : prevPlayer.warriors.map(warrior => {
+                if (warrior.id === selectedWarrior.id) {
+                    warrior.unlocked = true
+                    warrior.meatCost = Math.round(warrior.baseMeatCost * (1.09**warrior.level))
+                    warrior.harvestCost = Math.round(warrior.baseHarvestCost * (1.09**warrior.level))
+                }
+                return warrior
+            }),
+            attackPerSecond : newAttack,
+        }))
+
+    console.log(player)
+    }
+
+    // Upgrading warrior
+    const upgradeWarrior = id => {
+        for (let i=0; i < player.warriors.length; i++) {
+            if (player.warriors[i].id === id) {
+                const selectedWarrior = player.warriors[i]
+                if (player.meat >= selectedWarrior.meatCost && player.meal >= selectedWarrior.harvestCost) {
+                    upgradeWarriorStats(selectedWarrior)
+                    handleMessage("")
+                }
+            }
+        }
+        
+    }
+
+    function upgradeWarriorStats(selectedWarrior) {
+        const meatLeft = player.meat - selectedWarrior.meatCost
+        const mealLeft = player.meal - selectedWarrior.harvestCost
+        setPlayer(prevPlayer => ({
+            ...prevPlayer,
+            meal : mealLeft,
+            meat : meatLeft,
+            warriors : prevPlayer.warriors.map(warrior => {
+                if (warrior.id === selectedWarrior.id) {
+                    warrior.meatCost = Math.round(warrior.baseMeatCost * (1.09**warrior.level))
+                    warrior.harvestCost = Math.round(warrior.baseHarvestCost * (1.09**warrior.level))
+                    warrior.level = warrior.level + 1
+                    warrior.attack = warrior.attack > 1 ? warrior.attack + (warrior.baseAttack * warrior.multiplier) : warrior.attack + 1
+                }
+                return warrior
+            }),
+            attackPerSecond : prevPlayer.warriors.reduce((total, warrior) => {
+                if (warrior.unlocked) {
+                    return total + warrior.attack
+                } else {
+                    return total
+                }
+            }, 0)
+        }))
+    } 
+
     // Handles clicking events on screen for resources
     const handleClick = () => {
         setPlayer(prevPlayer => ({
@@ -127,6 +218,7 @@ const GameContainer = () => {
 
     }
 
+    // Calculate damage to the insect enemy
     function enemyDamageCalculator(type) {
         if (player.enemy.health - player[type] <= 0) {
             const enemyStats = { 
@@ -236,7 +328,7 @@ const GameContainer = () => {
                         <MealMined meal={player.meal} />
                         <MealPerSecond mps={player.mealPerSecond}/>
                         <Buttons 
-                            text="Harvest Meal" 
+                            text="Click to Harvest Meal" 
                             handleClickEvent={handleClick}
                             classNameAssigned="harvest-meal-btn" 
                         />
@@ -247,14 +339,13 @@ const GameContainer = () => {
                             {player.workers.map(worker => {
                                 return <WorkerItem 
                                             workerStats={worker} 
-                                            initialPurchase={handleInitialPurchase}
-                                            upgradingUnit={handleUpgrade}
-                                        />
+                                            initialPurchase={handleInitialPurchaseWorker}
+                                            upgradingUnit={handleUpgradeWorker}/>
                             })}
                         </ul>
                     </div> 
                 </div>
-                    <div className="warrior-section">
+                    <div className="warriors-section" style={{visibility : player.workers[5].unlocked ? 'visible' : 'hidden'}}>
                         <Meat 
                             meat={player.meat}
                         />
@@ -266,6 +357,16 @@ const GameContainer = () => {
                             level={player.enemy.level}
                             kills={player.enemy.kills}
                         />
+                        <h3>Warriors</h3>
+                        <ul className="warrior-list">
+                            {player.warriors.map(warrior => {
+                                return <Warriors 
+                                            warriorStats={warrior}
+                                            initialPurchase={handleInitialPurchaseWarrior}
+                                            upgradeUnit={upgradeWarrior}/>
+                            })}
+                        </ul>
+
                     </div>
                 </div>
 
