@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 
 // Components
 import Buttons from "./misc/Buttons"
@@ -111,34 +111,43 @@ const GameContainer = () => {
 
     // Handles clicking events on screen for resources
     const handleClick = () => {
-        setPlayer({
-            ...player,
-            meal : player.meal + player.clickMultiplier
-        })
+        setPlayer(prevPlayer => ({
+            ...prevPlayer,
+            meal : prevPlayer.meal + prevPlayer.clickMultiplier
+        }))
     }
 
     const handleAttack = () => {
-        if (player.enemy.health - player.attackPower <= 0) {
-            setPlayer(prevPlayer => ({
-                ...prevPlayer,
-                enemy : {
-                    ...prevPlayer.enemy,
-                    level : prevPlayer.enemy.level + 1,
-                    health: Math.round((prevPlayer.enemy.baseHealth * (1.2**prevPlayer.enemy.level))),
-                    kills : prevPlayer.enemy.kills + 1,
-                },
-                meat : prevPlayer.meat + (Math.round(.01 * prevPlayer.enemy.health) > 1 ? Math.round(.001 * prevPlayer.enemy.health) : 1)
-            }))
+        const { enemyStats, meatStats } = enemyDamageCalculator("attackPower")
+        setPlayer(prevPlayer => ({
+            ...prevPlayer,
+            enemy : enemyStats,
+            meat : meatStats,
+        }))
+
+    }
+
+    function enemyDamageCalculator(type) {
+        if (player.enemy.health - player[type] <= 0) {
+            const enemyStats = { 
+                    ...player.enemy,
+                    level : player.enemy.level + 1,
+                    health: Math.round((player.enemy.baseHealth * (1.2**player.enemy.level))),
+                    kills : player.enemy.kills + 1,}
+            const meatStats = player.meat + (Math.round(.01 * player.enemy.health) > 1 ? Math.round(.01 * player.enemy.health) : 1)
+
+            return {enemyStats, meatStats}
         } else {
-            setPlayer(prevPlayer => ({
-                ...prevPlayer,
-                enemy : {
-                    ...prevPlayer.enemy,
-                    health: prevPlayer.enemy.health - prevPlayer.attackPower
+            const enemyStats = {
+                    ...player.enemy,
+                    health: player.enemy.health - player[type]
                 }
-            }))
+            const meatStats = player.meat
+            
+            return {enemyStats, meatStats}
         }
     }
+
     ////////////////////////////
     // END OF GAMEPLAY SECTION//
     ///////////////////////////
@@ -148,14 +157,17 @@ const GameContainer = () => {
     // INCREMENTAL TIMER//
     /////////////////////
     useEffect(() => {
+        const { enemyStats, meatStats } = enemyDamageCalculator("attackPerSecond")
         const interval = setInterval(() => {
             setPlayer(prevPlayer => ({
                 ...prevPlayer, 
                 meal : prevPlayer.meal + prevPlayer.mealPerSecond,
+                enemy : enemyStats,
+                meat : meatStats,
             }))
         }, 1000);
         return () => clearInterval(interval);
-    }, []);
+    }, [player]);
 
     //////////////////////////
     // END INCREMENTAL TIMER//

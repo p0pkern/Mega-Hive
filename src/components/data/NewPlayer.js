@@ -115,14 +115,14 @@ const newPlayer = {
         },
     ],
     attackPower: 1,
-    attackPerSecond: 25000,
+    attackPerSecond: 0,
     meat : 0,
     enemy : {
         name : "Bill the Placeholder Bug",
         level : 1,
-        health : 100000,
+        health : 25,
         kills : 0,
-        baseHealth : 1000000,
+        baseHealth : 25,
     },
     warriors : [
         {
