@@ -5,6 +5,7 @@ import Buttons from "./misc/Buttons"
 import Header from "./misc/Header"
 import Message from "./misc/Message"
 import Footer from "./misc/Footer"
+import CheatButton from "./misc/CheatButton"
 
 // Worker Components
 import MealMined from "./workers/MealMined"
@@ -25,6 +26,15 @@ const GameContainer = () => {
     ////////////////////
     // CHEAT SECTION //
     ///////////////////
+    const handleEnableCheat = type => {
+        if (type === "midGame") {
+            setPlayer(prevPlayer => ({
+                ...prevPlayer,
+                meat : 100000000,
+                meal : 100000000,
+            }))
+        } 
+    }
 
     
     //////////////////////
