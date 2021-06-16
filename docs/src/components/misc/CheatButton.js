@@ -1,8 +1,8 @@
 import React from "react"
 
-const CheatButton = ({text, handleEnableCheat}) => {
+const CheatButton = ({text, handleCheat, type}) => {
     return (
-        <button className="cheat-button" onClick={handleEnableCheat}>
+        <button className="cheat-button" onClick={() => handleCheat(type)}>
             {text}
         </button>
     )

@@ -14,7 +14,6 @@ a:visited {
     color:rgb(190, 164, 77);
 }
 
-
 /* gameplay area */
 
 .game-area {
@@ -42,12 +41,6 @@ a:visited {
     margin-top: -10px;
 }
 
-.new-game-btn {
-    margin: 30px;  
-    margin-top: -10px;
-    padding: 20px;
-    border-radius: 10px;
-}
 
 .message-box {
     background-color:rgb(190, 164, 77);
@@ -354,6 +347,21 @@ a:visited {
     height: 50px;
 }
 
+
+/* Cheat Buttons */
+.top-row-button{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.cheat-button, .new-game-button {
+    width: 150px;
+    height: 30px;
+    border-radius: 15px;
+    margin-left: 20px;
+}
 /* Footer section */
 
 .footer {

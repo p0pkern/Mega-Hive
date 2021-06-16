@@ -30,10 +30,14 @@ const GameContainer = () => {
         if (type === "midGame") {
             setPlayer(prevPlayer => ({
                 ...prevPlayer,
-                meat : 100000000,
                 meal : 100000000,
             }))
-        } 
+        } else {
+            setPlayer(prevPlayer => ({
+                ...prevPlayer,
+                meat : 100000000,
+            }))
+        }
     }
 
     
@@ -60,13 +64,9 @@ const GameContainer = () => {
                 const selectedWorker = player.workers[i]
                 if (player.meal >= selectedWorker.cost) {
                     unlockWorker(selectedWorker)
-                    handleMessage("")
-                } else {
-                    handleMessage("Insufficient harvest for unlock.")
-                }
+                } 
             }
         }
-
         
         setPlayer(prevPlayer => ({
             ...prevPlayer,
@@ -101,9 +101,6 @@ const GameContainer = () => {
                 const selectedWorker = player.workers[i]
                 if (player.meal >= selectedWorker.cost) {
                     upgradeWorkerStats(selectedWorker)
-                    handleMessage("")
-                } else {
-                    handleMessage("Insufficient harvest for upgrade.")
                 }
             }  
         }
@@ -138,14 +135,7 @@ const GameContainer = () => {
                 const selectedWarrior = player.warriors[i]
                 if (player.meat >= selectedWarrior.meatCost && player.meal >= selectedWarrior.harvestCost) {
                     unlockWarriorStats(selectedWarrior)
-                    handleMessage("")
-                } else if (player.meat < selectedWarrior.meatCost && player.meal < selectedWarrior.harvestCost) {
-                    handleMessage("Insufficient harvest and meat for purchase")
-                } else if (player.meat < selectedWarrior.meatCost) {
-                    handleMessage("Insufficient meat for purchase.")
-                } else {
-                    handleMessage("Insufficient harvest for purchase.")
-                }
+                } 
             } 
         }
     }
@@ -176,8 +166,6 @@ const GameContainer = () => {
             }),
             attackPerSecond : newAttack,
         }))
-
-    console.log(player)
     }
 
     // Upgrading warrior
@@ -187,7 +175,6 @@ const GameContainer = () => {
                 const selectedWarrior = player.warriors[i]
                 if (player.meat >= selectedWarrior.meatCost && player.meal >= selectedWarrior.harvestCost) {
                     upgradeWarriorStats(selectedWarrior)
-                    handleMessage("")
                 }
             }
         }
@@ -318,29 +305,26 @@ const GameContainer = () => {
     ////////////////////////////////
     // END OF SAVE DELETE SECTION//
     ///////////////////////////////
-
-    ///////////////////////
-    // MESSAGE SECTION ///
-    //////////////////////
-    const [message, setMessage] = useState("Click on Harvest Meal to begin. For demo purposes, please use the 'Advance to x game buttons' ")
-
-    const handleMessage = ( message ) => {
-        setMessage(message)
-    }
-    ////////////////////////////
-    // END OF MESSAGE SECTION //
-    ///////////////////////////
     
     return (
         <div className="game-area">
             <div className="header-container">
                 <Header />
-                <Message sendMessage={message}/>
-                <Buttons
-                    text="New Game" 
-                    handleClickEvent={handleDelete}
-                    classNameAssigned="new-game-btn"
-                />
+                <div className="top-row-button">
+                    <CheatButton 
+                        text="Advance to Mid Game" 
+                        handleCheat={handleEnableCheat}
+                        type="midGame"/>
+                    <CheatButton 
+                        text="Advance to Late Game" 
+                        handleCheat={handleEnableCheat}
+                        type="lateGame"/>
+                    <Buttons
+                        text="New Game" 
+                        handleClickEvent={handleDelete}
+                        classNameAssigned="new-game-button"
+                    />
+                </div>
         
             </div>
                 <div className="gameplay-row">
