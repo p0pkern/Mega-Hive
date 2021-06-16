@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Mega-Hive/static/css/main.427629c5.chunk.css",
+    "main.js": "/Mega-Hive/static/js/main.5e03bda0.chunk.js",
+    "main.js.map": "/Mega-Hive/static/js/main.5e03bda0.chunk.js.map",
+    "runtime-main.js": "/Mega-Hive/static/js/runtime-main.879aa6c6.js",
+    "runtime-main.js.map": "/Mega-Hive/static/js/runtime-main.879aa6c6.js.map",
+    "static/js/2.513b11bd.chunk.js": "/Mega-Hive/static/js/2.513b11bd.chunk.js",
+    "static/js/2.513b11bd.chunk.js.map": "/Mega-Hive/static/js/2.513b11bd.chunk.js.map",
+    "index.html": "/Mega-Hive/index.html",
+    "static/css/main.427629c5.chunk.css.map": "/Mega-Hive/static/css/main.427629c5.chunk.css.map",
+    "static/js/2.513b11bd.chunk.js.LICENSE.txt": "/Mega-Hive/static/js/2.513b11bd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.879aa6c6.js",
+    "static/js/2.513b11bd.chunk.js",
+    "static/css/main.427629c5.chunk.css",
+    "static/js/main.5e03bda0.chunk.js"
+  ]
+}

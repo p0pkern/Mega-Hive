@@ -1,0 +1,382 @@
+body {
+    background-color: rgb(36, 37, 37);
+    color:rgb(190, 164, 77);
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    white-space: nowrap;
+}
+
+a:visited {
+    color:rgb(190, 164, 77);
+}
+
+
+/* gameplay area */
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+/* Game area formatting */
+.header-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 5px;
+}
+
+.header-logo {
+    font-size: 4rem;
+    margin-top: -10px;
+}
+
+.new-game-btn {
+    margin: 30px;  
+    margin-top: -10px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.message-box {
+    background-color:rgb(190, 164, 77);
+    color:rgb(36, 37, 37);
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 1.4em;
+    padding: 20px;
+    padding-top: 5px;
+    margin-top: 0;
+    margin-left: 20px;
+    overflow: scroll;
+}
+
+.message-box > p {
+    margin: 30px;
+}
+
+
+/* Gameplay Area*/
+.gameplay-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 220px;
+    padding-left: 30px;
+    white-space: nowrap;
+}
+
+.gameplay-row {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Area with clicker and stats for harvest. */
+.harvest-section {
+    padding: 0;
+}
+
+.harvest-section p{
+    padding: 0;
+    margin: 0;
+}
+
+.harvest-section .meal-mined{
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+
+.harvest-section .meal-per-second {
+    margin-top: 0;
+    padding: 0;
+}
+
+.harvest-section .harvest-meal-btn {
+    margin-top: 10px;
+    padding: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
+    border-radius: 20px;
+
+}
+
+/* Worker list section */
+
+.workers-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 270px;
+    height: auto;
+    overflow: scroll;
+}
+
+.workers-section > h3, .warriors-section > h3{
+    padding: 0;
+    padding-top: 10px;
+    margin: 0;
+    margin-top: 10px;
+    font-size: 1.4em;
+}
+
+.worker-list {
+    list-style-type: none;
+    width: 260px;
+    margin-left: 0;
+    margin-bottom: 0;
+    padding: 0;
+    padding-bottom: 10px;
+    height: auto;
+}
+
+.worker-item {
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+    width: 250px;
+    border-radius: 15px;
+    margin: 1px;
+}
+
+.worker-item p {
+    padding: 0;
+    margin: 0;
+}
+
+/* Worker is locked */
+
+.worker-item .locked-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.worker-item-unlocked {
+    background-color:rgb(190, 164, 77);
+    color:rgb(36, 37, 37);
+}
+
+.locked-icon svg{
+    width: 60px;
+    height: 60px;
+}
+.worker-item .locked-cost {
+    margin-top: 25px;
+    margin-left: 10px;
+    font-size: 1.2em;
+}
+
+/* Worker is unlocked */
+.worker-unlocked {
+    display: flex;
+    flex-direction: row;
+}
+
+.worker-unlocked p {
+    padding: 0;
+    margin: 0;
+}
+
+.worker-icon-unlocked svg{
+    width: 45px;
+    height: 45px;
+}
+
+.worker-icon-level-container {
+    padding: 0;
+    margin: 0;
+}
+
+.worker-basic-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.worker-info-container {
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.worker-info-container .worker-name {
+    font-weight: bold;
+}
+
+/* Warrior and Battle Section */
+.enemy-data {
+    margin: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+}
+
+.enemy-image {
+    width: 80px;
+    height: 80px;
+}
+
+.enemy-image h3 {
+    font-size: 1.4em;
+}
+
+.meat-harvest {
+    margin-left: 50px;
+}
+
+.meat-harvest p, .attack-per-second p{
+    padding: 0;
+    margin: 0;
+}
+
+.attack-per-second p{
+    margin-left: 50px;
+}
+
+.meat-harvest h3{
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+
+.enemy-data  p, .enemy-data h3{
+    margin: 0;
+    padding: 0;
+}
+
+.enemy-data h3 {
+    font-size: 1.5em;
+    margin-top: -20px;
+}
+
+.enemy-data p {
+    font-size: 1.2em;
+    padding-bottom: 3px;
+}
+
+.enemy-data .enemy-data-bottom {
+    padding: 0;
+    margin: 0;
+    margin-bottom: -20px;
+    color: red;
+}
+
+/* Warriors */
+.warrior-list {
+    list-style-type: none;
+    margin-left: 10px;
+}
+
+.warrior-locked, .warrior-unlocked {
+    width: 250px;
+    height: 100px;
+    border-radius: 15px;
+}
+
+.warriors-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.warriors-section > h3 {
+    margin-top: 0;
+    margin-left: 120px;
+}
+
+.warrior-locked-icon svg {
+    width: 70px;
+    height: 70px;
+}
+
+.warrior-locked {
+    display: flex;
+    flex-direction: row;
+}
+
+.warrior-locked-data {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.warrior-locked-data p{
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+/* warrior unlocked */
+.warrior-unlocked {
+    background-color:rgb(173, 44, 11);
+    color:rgb(204, 216, 216);
+}
+
+.warrior-unlocked-data {
+    display: flex;
+    flex-direction: row;
+}
+
+.warrior-unlocked-name-level p, .warrior-unlocked-data p{
+    margin: 0;
+    padding: 0;
+}
+
+.warrior-unlocked-name-level {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.warrior-unlocked-data-items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.warrior-unlocked-icon svg {
+    width: 50px;
+    height: 50px;
+}
+
+/* Footer section */
+
+.footer {
+    font-size: 1.4em;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    margin-bottom: -100px;
+    padding: 30px;
+    padding-bottom: -100px;
+    background-color: rgb(36, 37, 37);
+    color:rgb(190, 164, 77);
+}
+
+.github svg, .linkedin svg{
+    width: 60px;
+    height: 60px;
+    padding: 30px;
+    padding-top: 0;
+}
+
+.footer-icon {
+    display: flex;
+    flex-direction: row;
+}
+
