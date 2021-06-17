@@ -265,7 +265,7 @@ const GameContainer = () => {
         const answer = window.confirm("Do you want to sacrifice you units and Ascend to the greater plane?")
         if (answer && (player.meal >= 100000 && player.meat > 1000)) {
             const essence = calculateMindEssence()
-            const usableEssence = essence >= 100 ? Math.round(essence / 100) : 1
+            const usableEssence = essence >= 100 ? player.mindEssence + Math.round(essence / 100) : player.mindEssence + 1
 
             const workerIds = ["w1", "w2", "w3", "w4", "w5",
                                "w6", "w7", "w8", "w9", "w10"]
