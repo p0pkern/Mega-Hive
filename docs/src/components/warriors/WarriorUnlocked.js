@@ -5,7 +5,8 @@ const WarriorUnlocked = ({ warrior, handleUpgradeUnit}) => {
     return (
         <button 
             onClick={() => handleUpgradeUnit(warrior.id)}
-            className="warrior-unlocked">
+            className="warrior-unlocked"
+            style={{cursor: "pointer"}}>
             <div className="warrior-unlocked-data">
                 <div className="warrior-unlocked-name-level">
                     <p>{warrior.name}</p>
@@ -16,6 +17,7 @@ const WarriorUnlocked = ({ warrior, handleUpgradeUnit}) => {
                     <p>{`Atk: ${warrior.attack}`}</p>
                     <p>{`Meat: ${warrior.meatCost}`}</p>
                     <p>{`Meal: ${warrior.harvestCost}`}</p>
+                    <p>{`Mult: ${warrior.multiplier}`}</p>
                 </div>
             </div>
         </button>

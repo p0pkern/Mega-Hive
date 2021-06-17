@@ -3,7 +3,7 @@ import { GiLongAntennaeBug } from "react-icons/gi"
 
 const Enemy = ({name, health, level, kills, handleAttackClick}) => {
     return (
-        <button className="enemy-data" onClick={handleAttackClick}>
+        <button className="enemy-data" onClick={handleAttackClick} style={{cursor: "pointer"}}>
             <h3>{name}</h3>
             <p>{`Level: ${level}`}</p> 
             <p>Health:</p>

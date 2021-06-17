@@ -7,13 +7,15 @@ const WorkerItem = ({workerStats, initialPurchase, upgradingUnit}) => {
         return (
             <WorkerUnlocked 
                 worker={workerStats}
-                handleUpgrade={upgradingUnit}/>
+                handleUpgrade={upgradingUnit}
+                key={workerStats.id}/>
         )}
     return (
         <WorkerLocked 
             workerId={workerStats.id}
             workerCost={workerStats.cost}
             handleInitialPurchase={initialPurchase}
+            key={workerStats.id}
             />
     )
 }

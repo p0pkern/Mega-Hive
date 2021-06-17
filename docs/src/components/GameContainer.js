@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react"
 // Components
 import Buttons from "./misc/Buttons"
 import Header from "./misc/Header"
-import Message from "./misc/Message"
 import Footer from "./misc/Footer"
 import CheatButton from "./misc/CheatButton"
 
@@ -20,6 +19,10 @@ import Warriors from "./warriors/Warriors"
 
 // Player object
 import { newPlayer } from "./data/NewPlayer"
+
+// Ascension
+import TrueMindHeader from "./true-mind/TrueMindHeading"
+import TrueMind from "./true-mind/TrueMind"
 
 const GameContainer = () => {
 
@@ -87,6 +90,7 @@ const GameContainer = () => {
             workers : player.workers.map(prevWorker => {
                 if (prevWorker.id === selectedUnit.id) {
                     prevWorker.unlocked = true
+                    prevWorker.level = 1
                     prevWorker.cost = Math.round(((prevWorker.cost) * (1.07**prevWorker.level)))
                 }
                 return prevWorker
@@ -159,6 +163,7 @@ const GameContainer = () => {
             warriors : prevPlayer.warriors.map(warrior => {
                 if (warrior.id === selectedWarrior.id) {
                     warrior.unlocked = true
+                    warrior.level = 1
                     warrior.meatCost = Math.round(warrior.baseMeatCost * (1.09**warrior.level))
                     warrior.harvestCost = Math.round(warrior.baseHarvestCost * (1.09**warrior.level))
                 }
@@ -247,6 +252,86 @@ const GameContainer = () => {
         }
     }
 
+
+    ///////////////////////////
+    //ACTIVATE THE TRUE MIND//
+    //////////////////////////
+
+    const trueMindAscension = () => {
+        const answer = window.confirm("Do you want to sacrifice you units and Ascend to the greater plane?")
+        if (answer && (player.meal >= 100000 && player.meat > 1000)) {
+            const essence = calculateMindEssence()
+            const usableEssence = essence >= 100 ? Math.round(essence / 100) : 1
+
+            const workerIds = ["w1", "w2", "w3", "w4", "w5",
+                               "w6", "w7", "w8", "w9", "w10"]
+
+            const warriorIds = ["wa1", "wa2", "wa3", "wa4", "wa5"]
+
+            const randNum1 = getRandomInteger(player.workers.length - 1)
+            const randNum2 = getRandomInteger(player.workers.length - 1)
+
+            const randNum3 = getRandomInteger(player.warriors.length - 1)
+
+            setPlayer(prevPlayer => ({
+                ...prevPlayer,
+                meat : 0,
+                meal : 0,
+                mealPerSecond: 0,
+                workers : prevPlayer.workers.map(worker => {
+                    worker.cost = worker.baseCost 
+                    worker.HPS = worker.baseHPS
+                    worker.level = 0
+                    worker.unlocked = false
+                    if (worker.id === workerIds[randNum1]) {
+                        worker.multiplier = worker.multiplier + 1
+                    }
+                    if (worker.id === workerIds[randNum2]) {
+                        worker.multiplier = worker.multiplier + 1
+                    }
+
+                    return worker
+                }),
+                attackPower : 1,
+                attackPerSecond : 0,
+                warriors : prevPlayer.warriors.map(warrior => {
+                    warrior.level = 0
+                    warrior.attack = warrior.baseAttack
+                    warrior.meatCost = warrior.baseMeatCost
+                    warrior.harvestCost = warrior.baseHarvestCost
+                    warrior.unlocked = false
+                    if (warrior.id === warriorIds[randNum3]) {
+                        warrior.multiplier += 1
+                    }
+                    return warrior
+                }),
+                mindEssence : usableEssence
+            }))
+        } else if (answer && (player.meat < 1000 || player.meal < 100000)) {
+            alert("The True Mind denies your request.")
+        }
+    }
+
+    function calculateMindEssence() {
+        const workerEssence = player.workers.reduce((total, worker) => {
+            return total + worker.level
+        }, 0)
+
+        const warriorEssence = player.workers.reduce((total, warrior) => {
+            return total + warrior.level
+        }, 0)
+
+        return workerEssence + warriorEssence
+    }
+
+    function getRandomInteger(max) {
+        return Math.floor(Math.random() * max)
+    }
+
+    ////////////////////////////
+    //END TRUE MIND ACTIVATION//
+    ////////////////////////////
+
     ////////////////////////////
     // END OF GAMEPLAY SECTION//
     ///////////////////////////
@@ -260,7 +345,7 @@ const GameContainer = () => {
         const interval = setInterval(() => {
             setPlayer(prevPlayer => ({
                 ...prevPlayer, 
-                meal : prevPlayer.meal + prevPlayer.mealPerSecond,
+                meal : prevPlayer.meal + prevPlayer.mealPerSecond + (Math.round(prevPlayer.meal * (prevPlayer.mindEssence / 100))),
                 enemy : enemyStats,
                 meat : meatStats,
             }))
@@ -270,7 +355,7 @@ const GameContainer = () => {
 
     //////////////////////////
     // END INCREMENTAL TIMER//
-    /////////////////////////
+    //////////////////////////
 
 
     //////////////////////////////////////////////////////
@@ -302,6 +387,7 @@ const GameContainer = () => {
         const temp = JSON.stringify(player)
         localStorage.setItem("player", temp)
     }, [player])
+
     ////////////////////////////////
     // END OF SAVE DELETE SECTION//
     ///////////////////////////////
@@ -350,6 +436,7 @@ const GameContainer = () => {
                         </ul>
                     </div> 
                 </div>
+                
                     <div className="warriors-section" style={{visibility : player.workers[5].unlocked ? 'visible' : 'hidden'}}>
                         <Meat 
                             meat={player.meat}
@@ -371,7 +458,14 @@ const GameContainer = () => {
                                             upgradeUnit={upgradeWarrior}/>
                             })}
                         </ul>
-
+                    </div>
+                    <div className="true-mind-area">
+                        <div style={{visibility : player.mindEssence > 0 ? 'visible' : 'hidden'}}>
+                            <TrueMindHeader essences={player.mindEssence} />
+                        </div>
+                        <div style={{visibility : player.warriors[2].unlocked ? 'visible' : 'hidden'}}>
+                        <TrueMind handleAscension={trueMindAscension}/>
+                        </div>
                     </div>
                 </div>
 

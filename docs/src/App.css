@@ -332,21 +332,22 @@ a:visited {
     margin: 0;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 
 .warrior-unlocked-data-items {
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 60px;
 }
 
 .warrior-unlocked-icon svg {
     width: 50px;
     height: 50px;
 }
-
 
 /* Cheat Buttons */
 .top-row-button{
@@ -362,6 +363,58 @@ a:visited {
     border-radius: 15px;
     margin-left: 20px;
 }
+
+/* True Mind */
+
+.true-mind-text {
+    width: 300px;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.true-mind-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.true-mind-data {
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.true-mind-data p, .true-mind-data h3{
+    padding: 0;
+    margin: 0;
+}
+
+.true-mind-data h3 {
+    font-size: 20px;
+}
+
+.true-mind-cost {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.true-mind-data svg {
+    width: 80px;
+    height: 80px;
+}
+
+.true-mind-header h3, .true-mind-header p{
+    padding: 0;
+    margin: 0;
+}
+
+.true-mind-header h3 {
+    font-size: 1.4em;
+}
+
+.true-mind-header {
+    margin-bottom: 20px;
+}
+
 /* Footer section */
 
 .footer {
