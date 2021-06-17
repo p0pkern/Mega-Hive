@@ -73,13 +73,7 @@ const GameContainer = () => {
         
         setPlayer(prevPlayer => ({
             ...prevPlayer,
-            mealPerSecond: prevPlayer.workers.reduce((total, worker) => {
-                if (worker.unlocked) {
-                    return total + worker.HPS
-                } else {
-                    return total
-                }
-            }, 0), 
+            mealPerSecond: calculateMealPerSecond(), 
         }))
     }
 
@@ -111,6 +105,7 @@ const GameContainer = () => {
     }
 
     function upgradeWorkerStats(selectedUnit) {
+
         setPlayer({
             ...player,
             meal : player.meal - selectedUnit.cost,
@@ -122,14 +117,22 @@ const GameContainer = () => {
                 }
                 return prevWorker
             }),
-            mealPerSecond: player.workers.reduce((total, worker) => {
-                if (worker.unlocked) {
-                    return total + worker.HPS
-                } else {
-                    return total
-                }
-            }, 0), 
+            mealPerSecond: calculateMealPerSecond(),
         })
+    }
+
+    function calculateMealPerSecond() {
+        const newMealPerSecond = player.workers.reduce((total, worker) => {
+            if (worker.unlocked) {
+                return total + worker.HPS
+            } else {
+                return total
+            }
+        }, 0)
+
+        const totalMealPerSecond = newMealPerSecond + Math.ceil((newMealPerSecond * (player.mindEssence / 100)))
+
+        return totalMealPerSecond
     }
 
     // Unlocking Warrior
@@ -238,7 +241,8 @@ const GameContainer = () => {
                     level : player.enemy.level + 1,
                     health: Math.round((player.enemy.baseHealth * (1.2**player.enemy.level))),
                     kills : player.enemy.kills + 1,}
-            const meatStats = player.meat + (Math.round(.01 * player.enemy.health) > 1 ? Math.round(.01 * player.enemy.health) : 1)
+            const meatCalc = (Math.round(.01 * player.enemy.health) > 1 ? Math.round(.01 * player.enemy.health) : 1)
+            const meatStats = player.meat + Math.ceil(meatCalc * (player.mindEssence / 100))
 
             return {enemyStats, meatStats}
         } else {
@@ -345,7 +349,7 @@ const GameContainer = () => {
         const interval = setInterval(() => {
             setPlayer(prevPlayer => ({
                 ...prevPlayer, 
-                meal : prevPlayer.meal + prevPlayer.mealPerSecond + (Math.round(prevPlayer.meal * (prevPlayer.mindEssence / 100))),
+                meal : prevPlayer.meal + (prevPlayer.mealPerSecond),
                 enemy : enemyStats,
                 meat : meatStats,
             }))
